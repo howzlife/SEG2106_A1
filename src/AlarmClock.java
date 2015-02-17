@@ -21,6 +21,7 @@ public class AlarmClock
   private int currentMinutes;
   private int alarmHour;
   private int alarmMinutes;
+  private int soundLevel;
   private boolean alarmSet;
   private String alarmType;
 
@@ -50,6 +51,7 @@ public class AlarmClock
     currentMinutes = 0;
     alarmHour = 0;
     alarmMinutes = 0;
+    soundLevel = 1;
     alarmSet = false;
     setAlarmSystemShowAlarmTime(AlarmSystemShowAlarmTime.Null);
     setAlarmSystemSetTime(AlarmSystemSetTime.Null);
@@ -192,7 +194,16 @@ public class AlarmClock
 
     return wasEventProcessed;
   }
-
+  
+  public boolean setSoundLevel(int x) {
+	  soundLevel = x;
+	  return true;
+  }
+  
+  public int getSoundLevel() {
+	  return soundLevel;
+  }
+  
   public boolean setAlarm()
   {
     boolean wasEventProcessed = false;
@@ -240,6 +251,11 @@ public class AlarmClock
   public boolean getActiveAlarmState() {
 	  if (alarmType == ("radio")) return true; 
 	  return false;
+  }
+  
+  public String getActiveAlarmState(boolean x) {
+	  if (alarmType == ("radio")) return "radio"; 
+	  return "sound";
   }
   
   public boolean activateAlarm(int x)
